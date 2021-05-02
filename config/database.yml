@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+development:
+  <<: *default
+  database: test_TwitterClone_development
+test:
+  <<: *default
+  database: test_TwitterClone_test
+production:
+  <<: *default
+  database: test_TwitterClone_production
+  username: test_TwitterClone
+  password: <%= ENV['TEST_TWITTERCLONE_DATABASE_PASSWORD'] %>
