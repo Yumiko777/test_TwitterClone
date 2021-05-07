@@ -11,12 +11,12 @@ class PostsController < ApplicationController
     end
 
     def create
-      @post = Post.new(post_params)
+      @post = Post.create(post_params)
       if params[:back]
         render :new
       else
         if @post.save
-          redirect_to posts_path, notice: "つぶやきを投稿しました！"
+          redirect_to new_post_path, notice: "つぶやきを投稿しました！"
         else
           render :new
         end
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
     def update
       if @post.update(post_params)
-        redirect_to posts_path, notice: "つぶやきを編集しました！"
+        redirect_to post_path, notice: "つぶやきを編集しました！"
       else
         render :edit
       end
